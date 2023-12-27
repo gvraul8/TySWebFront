@@ -20,7 +20,8 @@ export class UserSService {
       pwd2: usuario.pwd2
     }
 
+    console.log('Valor de info:', info);
     return this.client.post<any>('http://localhost:8080/users/register', info)
-  
+
   }
 }

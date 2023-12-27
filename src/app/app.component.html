@@ -1,7 +1,22 @@
-La temperatura donde estas hoy {{ciudad}} será entre {{TemperaturaMax}} y {{TemperaturaMin}}
-<a routerLink="Juegos">Jugar al 3 en raya</a>
-<br>
-<a routerLink="Registro">Registrar</a>
-<br>
-<a routerLink="Login">Login</a>
-<router-outlet></router-outlet>
+<div class="header">
+    <div class="logo">
+      <img src="assets/logoESI.png" alt="Logo" width="100" height="100">
+    </div>
+    <div class="header-text">
+        Bienvenido a la Escuela Superior de Informática
+      </div>
+    <div class="links">
+      <a routerLink="Registro">Registrar</a>
+      <a routerLink="Login">Login</a>
+    </div>
+  </div>
+  
+  <div class="main-content">
+    <h1>Jugar al 3 en raya</h1>
+    <div class="button-container">
+      <button routerLink="Juegos">Jugar al 3 en raya</button>
+      <button routerLink="OtroJuego">Otro Juego</button>
+    </div>
+    <p>La temperatura donde estás hoy {{ciudad}} será entre {{TemperaturaMax}} y {{TemperaturaMin}}</p>
+    <router-outlet></router-outlet>
+  </div>

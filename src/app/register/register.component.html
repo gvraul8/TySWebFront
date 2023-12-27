@@ -1,21 +1,50 @@
 <p>register works!</p>
 
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<div class="Register">
+  <form class="custom-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h1>Registrarse</h1>
+    <br />
     <label>Nombre completo:</label>
-    <input type="text" formControlName="Nombre">
-    <br>
+    <input type="text" formControlName="Nombre" required />
+    <div *ngIf="registerForm.controls['Nombre'].errors" class="error-message">
+      <div *ngIf="registerForm.controls['Nombre'].errors?.['required']">
+        El campo es obligatorio
+      </div>
+    </div>
+    <br />
     <label>Correo electrónico:</label>
-    <input type="text" formControlName="Email">
-    <br>
+    <input type="text" formControlName="Email" required />
+    <div *ngIf="registerForm.controls['Email'].errors" class="error-message">
+      <div *ngIf="registerForm.controls['Email'].errors?.['required']">
+        El campo es obligatorio
+      </div>
+      <div *ngIf="registerForm.controls['Email'].errors?.['email']">
+        El campo debe ser un email válido
+      </div>
+    </div>
+    <br />
     <label>Contraseña:</label>
-    <input type="password" formControlName="Pwd1">
-    <br>
+    <input type="password" formControlName="Pwd1" required />
+    <div *ngIf="registerForm.controls['Pwd1'].errors" class="error-message">
+      <div *ngIf="registerForm.controls['Pwd1'].errors?.['required']">
+        El campo es obligatorio
+      </div>
+    </div>
+    <br />
     <label>Repita contraseña:</label>
-    <input type="password" formControlName="Pwd2">
-    <br>
-    <button type="submit">Registrarse</button>
-</form>
+    <input type="password" formControlName="Pwd2" required />
+    <div *ngIf="registerForm.controls['Pwd2'].errors" class="error-message">
+      <div *ngIf="registerForm.controls['Pwd2'].errors?.['required']">
+        El campo es obligatorio
+      </div>
+    </div>
+    <span *ngIf="errorMessage" class="error-message">{{ errorMessage }}</span>
+    <br />
+    <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+  </form>
 
-<span *ngIf="respuestaOK"> Te hemos enviado un email de confirmacion. </span>
+  <span *ngIf="respuestaOK">Te has registrado correctamente.</span>
+  <span *ngIf="respuestaOK">Te hemos enviado un email de confirmación.</span>
 
-<button (click)="bindeo()">Prueba bindeo</button>
+  <button (click)="bindeo()">Prueba bindeo</button>
+</div>
