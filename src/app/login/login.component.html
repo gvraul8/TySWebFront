@@ -1,0 +1,34 @@
+<p>login works!</p>
+
+<div class="Login">
+  <form class="custom-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h1>Iniciar Sesión</h1>
+    <br />
+    <label>Correo electrónico:</label>
+    <input type="text" formControlName="Email" />
+    <div *ngIf="this.loginForm.controls['Email'].errors" class="error-message">
+      <div *ngIf="this.loginForm.controls['Email'].errors?.['required']">
+        El campo es obligatorio
+      </div>
+      <div *ngIf="this.loginForm.controls['Email'].errors?.['email']">
+        El campo debe ser un email válido
+      </div>
+    </div>
+    <br />
+    <label>Contraseña:</label>
+    <input type="password" formControlName="Pwd1" />
+    <div
+      *ngIf="this.loginForm.controls['Password'].errors"
+      class="error-message"
+    >
+      <div *ngIf="this.loginForm.controls['Password'].errors?.['required']">
+        El campo es obligatorio
+      </div>
+      <div *ngIf="this.loginForm.controls['Password'].errors?.['minlength']">
+        El campo debe tener al menos 6 caracteres
+      </div>
+    </div>
+    <br />
+    <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
+  </form>
+</div>

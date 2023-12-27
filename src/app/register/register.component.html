@@ -1,0 +1,21 @@
+<p>register works!</p>
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <label>Nombre completo:</label>
+    <input type="text" formControlName="Nombre">
+    <br>
+    <label>Correo electrónico:</label>
+    <input type="text" formControlName="Email">
+    <br>
+    <label>Contraseña:</label>
+    <input type="password" formControlName="Pwd1">
+    <br>
+    <label>Repita contraseña:</label>
+    <input type="password" formControlName="Pwd2">
+    <br>
+    <button type="submit">Registrarse</button>
+</form>
+
+<span *ngIf="respuestaOK"> Te hemos enviado un email de confirmacion. </span>
+
+<button (click)="bindeo()">Prueba bindeo</button>
