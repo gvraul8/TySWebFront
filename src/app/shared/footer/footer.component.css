@@ -1,0 +1,48 @@
+/* Estilo para el footer */
+:host {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  display: block;
+  margin-top: 10%; /* Ajusta el margen superior según tus necesidades */
+}
+.git-icons {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
+}
+
+.git-icons .github-link {
+  text-decoration: none;
+  margin: 0 20px; /* Ajusta el margen entre los elementos */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.git-icons .github-link:hover {
+  color: #007bff;
+}
+
+.git-icon-container {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+}
+
+.git-icons .iconify {
+  color: #fff;
+  font-size: 24px;
+}
+
+.git-text {
+  color: #fff;
+  margin-top: 5px;
+  font-size: 1em;
+  text-align: center;
+}

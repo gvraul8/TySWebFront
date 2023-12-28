@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { user } from '../user/user';
-import { UserSService } from '../user-s.service';
+import { User } from '../user/user';
+//import { UserSService } from '../user-s.service';
+import { LoginService } from '../services/auth/login.service';
 
 @Component({
   selector: 'app-register',
@@ -17,13 +18,13 @@ export class RegisterComponent {
     Pwd2: new FormControl('', {nonNullable: true, validators: [Validators.required]})
   });
 
-  usuario: user;
+  usuario: User;
   respuestaOK: boolean;
   errorMessage: string = '';
 
 
-  constructor(private userService: UserSService) {
-    this.usuario = new user();
+  constructor(private userService: LoginService) {
+    this.usuario = new User();
     this.respuestaOK = false;
   }
 

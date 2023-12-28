@@ -1,0 +1,48 @@
+/* Estilo para el header */
+.header {
+    background-color: #365d90d7;
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Estilo para el logo */
+  .logo img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  /* Estilo para el texto del header */
+  .header-text {
+    flex-grow: 1;
+    margin: 0 20px;
+  }
+  
+  /* Estilo para los enlaces */
+  .links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+  }
+  
+  .links a:hover {
+    color: #000000; /* Color de cambio al pasar el ratón */
+  }
+
+  .logo img {
+    max-width: 70px; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+  }
+  
+  .header-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 5px;
+    align-content: lef; 
+  }
+  

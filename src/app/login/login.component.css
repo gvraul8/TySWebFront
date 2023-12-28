@@ -1,55 +1,83 @@
 * {
-    box-sizing: border-box;
-  }
-  html,
-  body {
-    background: #ecf0f3;
-  }
-  h1 {
-    margin: 0;
-    padding: 0;
-  }
-  .custom-form {
-    min-width: 300px;
-    max-width: 60%;
-    margin: 0px auto;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 2rem 3rem;
-    margin: auto;
-    border-radius: 2.5rem;
-    background-color: #ecf0f3;
-    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
-    color: black;
-    margin-top: 10rem;
-  }
-  .custom-form input {
-    display: block;
-    margin: 0.5rem 0;
-    width: 100%;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    border: none;
-    box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px
-        rgba(0, 0, 0, 0.1);
-    border: 0 none;
-    background: #ebf5fc;
-  }
-  .custom-form button {
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    border: none;
-    font-size: 0.875rem;
-    color: #ffffff;
-    font-weight: bold;
-    background-color: #6683af;
-    width: 100%;
-    display: block;
-    padding: 0.875rem 1rem;
-    border-radius: 1.5rem;
-    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
-    cursor: pointer;
-  }
+  box-sizing: border-box;
+}
 
-  .error-message {
-    color: red;
+html, body {
+  background: #ecf0f3;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-form {
+  min-width: 300px;
+  max-width: 60%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2rem 3rem;
+  border-radius: 2.5rem;
+  background-color: #ecf0f3;
+  color: black;
+  margin-top: 10rem;
+}
+
+.custom-form input {
+  display: block;
+  margin: 0.5rem 0;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border: none;
+  box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  transition: border-color 0.3s ease; /* Transición para el cambio de color del borde */
+}
+
+.custom-form button {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: none;
+  font-size: 0.875rem;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #6683af;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+}
+
+.register-message {
+  text-align: right;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.register-message a {
+  color: #6683af;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-message a:hover {
+  text-decoration: underline;
+}
+
+/* Media queries para hacer el formulario responsive */
+@media screen and (max-width: 768px) {
+  .custom-form {
+    max-width: 80%;
   }
+}
+
+/* Estilos para centrar el RegisterComponent */
+:host {
+  align-items: center;
+  justify-content: center;
+}

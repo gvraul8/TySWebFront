@@ -1,34 +1,40 @@
-<p>login works!</p>
-
 <div class="Login">
   <form class="custom-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <h1>Iniciar Sesión</h1>
     <br />
     <label>Correo electrónico:</label>
-    <input type="text" formControlName="Email" />
-    <div *ngIf="this.loginForm.controls['Email'].errors" class="error-message">
-      <div *ngIf="this.loginForm.controls['Email'].errors?.['required']">
+    <input type="text" formControlName="email" />
+    <div *ngIf="this.loginForm.controls['email'].errors" class="error-message">
+      <div *ngIf="this.loginForm.controls['email'].errors?.['required']">
         El campo es obligatorio
       </div>
-      <div *ngIf="this.loginForm.controls['Email'].errors?.['email']">
+      <div *ngIf="this.loginForm.controls['email'].errors?.['email']">
         El campo debe ser un email válido
       </div>
     </div>
     <br />
     <label>Contraseña:</label>
-    <input type="password" formControlName="Password" />
+    <input type="password" formControlName="pwd" />
     <div
-      *ngIf="this.loginForm.controls['Password'].errors"
+      *ngIf="this.loginForm.controls['pwd'].errors"
       class="error-message"
     >
-      <div *ngIf="this.loginForm.controls['Password'].errors?.['required']">
+      <div *ngIf="this.loginForm.controls['pwd'].errors?.['required']">
         El campo es obligatorio
       </div>
-      <div *ngIf="this.loginForm.controls['Password'].errors?.['minlength']">
+      <div *ngIf="this.loginForm.controls['pwd'].errors?.['minlength']">
         El campo debe tener al menos 6 caracteres
       </div>
     </div>
     <br />
     <button type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
+    <br />
+    <br />
+    <div *ngIf="errorMessage" class="error-message" style="color: red;">
+      {{ errorMessage }}
+    </div>
+    <div class="register-message">
+      ¿No tienes cuenta? <a routerLink="/Registro">Registrarse</a>
+    </div>
   </form>
 </div>

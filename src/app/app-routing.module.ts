@@ -3,8 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { RayaComponent } from './raya/raya.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+
 
 const routes: Routes = [
+  { path: '', redirectTo: '/Home', pathMatch: 'full' },
+  {path: 'Home', component: HomeComponent},
   {path:'Juegos', component: RayaComponent},
   {path: 'Registro', component: RegisterComponent}, 
   {path: 'Login', component: LoginComponent}];

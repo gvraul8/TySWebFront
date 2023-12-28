@@ -11,14 +11,13 @@
   }
   .custom-form {
     min-width: 300px;
-    max-width: 60%;
+    max-width: 80%;
     margin: 0px auto;
     background: rgba(255, 255, 255, 0.15);
     padding: 2rem 3rem;
     margin: auto;
     border-radius: 2.5rem;
     background-color: #ecf0f3;
-    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
     color: black;
     margin-top: 10rem;
   }
@@ -32,7 +31,7 @@
     box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.8), inset 5px 5px 10px
         rgba(0, 0, 0, 0.1);
     border: 0 none;
-    background: #ebf5fc;
+    background: #fff;
   }
   .custom-form button {
     text-transform: uppercase;
@@ -52,4 +51,20 @@
 
   .error-message {
     color: red;
+  }
+
+  .login-message {
+    text-align: right;
+    margin-top: 1rem;
+    color: #333;
+  }
+  
+  .login-message a {
+    color: #6683af;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-message a:hover {
+    text-decoration: underline;
   }
