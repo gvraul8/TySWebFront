@@ -1,9 +1,9 @@
-<p>raya works!</p>
-<div *ngFor="let row of partida.celdas let i=index">
-    <button (click)="ocuparCelda(i,j)" *ngFor="let col of row let j=index">
-        <span *ngIf="col">{{col}}</span>
-        <span *ngIf="!col">&nbsp;</span>
-    </button>
-
-
+<p>4 en raya works!</p>
+<p *ngIf="partida.players.length < 2">Buscando rival...</p>
+<div class="tablero">
+  <div class="fila" *ngFor="let fila of [0, 1, 2, 3, 4, 5]">
+    <div class="casilla" *ngFor="let col of [0, 1, 2, 3, 4, 5, 6]">
+      <span class="circulo" [ngClass]="getClaseCasilla(partida.casillas[fila][col])"></span>
+    </div>
+  </div>
 </div>
