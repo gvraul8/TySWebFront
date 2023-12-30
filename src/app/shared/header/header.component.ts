@@ -22,5 +22,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.loginService.currentUserData.next(new User());
     this.loginService.currentUserLoginOn.next(false);
+    sessionStorage.removeItem('session_id');
   }
 }

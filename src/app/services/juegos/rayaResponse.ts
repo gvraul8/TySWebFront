@@ -1,6 +1,11 @@
 export interface RayaResponse {
+    id: string;
+    status: string;
+}
+
+export interface Tablero4R {
     players: Player[];
-    jugadorConElTurno: Player | null;
+    meToca: boolean;
     id: string;
     ganador: Player | null;
     perdedor: Player | null;

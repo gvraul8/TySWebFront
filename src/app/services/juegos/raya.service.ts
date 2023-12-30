@@ -2,20 +2,33 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RayaResponse } from './rayaResponse';
-import { catchError, tap } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { serverHost, serverPort } from '../../app.properties';
+
+const url4RStart = `http://${serverHost}:${serverPort}/matches/start?juego=Tablero4R`;
+const url4RPlay = `http://${serverHost}:${serverPort}/matches/play?juego=Tablero4R`;
 
 @Injectable({
   providedIn: 'root',
 })
 export class RayaService {
-  private apiUrl = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) {}
 
   iniciarPartida(): Observable<RayaResponse> {
-    const url4R = `${this.apiUrl}/matches/start?juego=Tablero4R`;
+    // Iniciar conexión ws con el servidor cuando la partida se ha creado correctamente
 
-    return this.httpClient.get<RayaResponse>(url4R);
+    return this.httpClient.get<RayaResponse>(url4RStart, {withCredentials: true});
+  }
+
+  play(idPartida: String) {
+    console.log('play() idPartida:', idPartida);
+    return this.httpClient.post(url4RPlay, {"id": idPartida}).subscribe(
+      (response) => {
+        console.log('play() response:', response);
+      },
+      (error) => {
+        console.error('play() error:', error);
+      }
+    )
   }
 }

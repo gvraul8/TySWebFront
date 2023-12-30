@@ -1,15 +1,15 @@
-import { RayaResponse, Player } from '../services/juegos/rayaResponse';
+import { Player, Tablero4R } from '../services/juegos/rayaResponse';
 export class Raya {
     players: Player[];
-    jugadorConElTurno: Player | null;
+    meToca: boolean = false;
     id: string;
     ganador: Player | null;
     perdedor: Player | null;
     casillas: string[][];
   
-    constructor(data: RayaResponse) {
+    constructor(data: Tablero4R) {
       this.players = data.players || [];
-      this.jugadorConElTurno = data.jugadorConElTurno || null;
+      this.meToca = data.meToca || false;
       this.id = data.id || '';
       this.ganador = data.ganador || null;
       this.perdedor = data.perdedor || null;

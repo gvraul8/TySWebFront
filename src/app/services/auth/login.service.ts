@@ -3,13 +3,16 @@ import { LoginRequest } from './loginRequest';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from 'src/app/user/user';
+import { serverHost, serverPort } from '../../app.properties';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private apiLoginURL = 'http://localhost:8080/users/login';
+  private apiLoginURL = `http://${serverHost}:${serverPort}/users/login`;
+  private apiRegisterURL = `http://${serverHost}:${serverPort}/users/register`;
+
 
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   currentUserData: BehaviorSubject<User> = new BehaviorSubject<User>(new User());
@@ -24,16 +27,20 @@ export class LoginService {
       pwd2: usuario.pwd2
     }
     console.log('Valor de info:', info);
-    return this.client.post<any>('http://localhost:8080/users/register', info)
+    return this.client.post<any>(this.apiRegisterURL, info)
   } 
 
-  login(credentials: LoginRequest): Observable<User> {
-    return this.client.put<User>(this.apiLoginURL, credentials).pipe(
+  login(credentials: LoginRequest): Observable<any> {
+    return this.client.put(this.apiLoginURL, credentials, {withCredentials: true}).pipe(
       tap(
-        (data: User) => {
+        (data: any) => {
           console.log('LoginService.login():', data);
           this.currentUserData.next(data);
           this.currentUserLoginOn.next(true);
+
+
+          // almacenar el id de sesión en el sessionStorage
+          sessionStorage.setItem('session_id', data.httpId);
         },
         (error) => {
           console.error('LoginService.login() error:', error);
