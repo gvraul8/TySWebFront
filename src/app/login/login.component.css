@@ -67,6 +67,8 @@ h1 {
 
 .register-message a:hover {
   text-decoration: underline;
+  color: #385279;
+
 }
 
 /* Media queries para hacer el formulario responsive */
@@ -80,4 +82,25 @@ h1 {
 :host {
   align-items: center;
   justify-content: center;
+}
+
+.custom-form button.login-button {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: none;
+  font-size: 0.875rem;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #6683af;
+  width: 100%;
+  display: block;
+  padding: 0.875rem 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-form button.login-button:hover {
+  background-color: #385279;
 }

@@ -1,41 +1,113 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
 .tablero {
-    display: grid;
-    grid-template-columns: repeat(7);
-  }
-  
-  .fila {
-    display: flex;
-  }
-  
-  .casilla {
-    border: 2px solid #3498db;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2em;
-    background-color: #ecf0f1;
-    cursor: pointer;
-  }
-  
-  .circulo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: block;
-  }
-  
-  .rojo {
-    background-color: rgb(167, 19, 19);
-  }
-  
-  .azul {
-    background-color: rgb(35, 35, 190);
-  }
-  
-  .blanco {
-    background-color: white;
-    border: 2px solid #3498db; 
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(7);
+  margin-top: 35px;
+  align-items: center;
+  justify-content: center;
+  gap: 2px; /* Añadir espaciado entre las casillas */
+}
+
+.fila {
+  display: flex;
+}
+
+.casilla {
+  border: 2px solid #3498db;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  background-color: #ecf0f1;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Añadir transición para el cambio de color */
+}
+
+
+.casilla:hover, .columna-hover {
+  background-color: #3498db91; 
+}
+
+
+.circulo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: block;
+}
+
+.rojo {
+  background-color: rgb(167, 19, 19);
+}
+
+.azul {
+  background-color: rgb(35, 35, 190);
+}
+
+.blanco {
+  background-color: white;
+  border: 2px solid #3498db;
+}
+
+.no-interactivo {
+  pointer-events: none; 
+  opacity: 0.5; 
+}
+
+/* Estilos para el mensaje del final de la partida */
+.fin-partida {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2; /* Coloca los mensajes encima del tablero */
+}
+
+.mensaje {
+  background-color: #f8f9fa;
+  border: 2px solid #ced4da;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mensaje-ganador {
+  color: #198754;
+  font-size: 18px;
+}
+
+.mensaje-empate {
+  color: #0dcaf0;
+  font-size: 18px;
+}
+
+.mensaje-perdedor {
+  color: #dc3545;
+  font-size: 18px;
+}
+
+/* Estilos para el botón de volver */
+.fin-partida button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.fin-partida button:hover {
+  background-color: #0056b3;
+}

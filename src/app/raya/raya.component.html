@@ -1,11 +1,28 @@
-<p *ngIf="estado === 'buscando'">Buscando rival...</p>
-<div *ngIf="estado === 'jugando'" class="tablero">
-  <div class="fila" *ngFor="let fila of [0, 1, 2, 3, 4, 5]">
-    <div class="casilla" *ngFor="let col of [0, 1, 2, 3, 4, 5, 6]">
-      <span
-        class="circulo"
-        [ngClass]="getClaseCasilla(partida.casillas[fila][col])"
-      ></span>
+<div class="container"> 
+  <div class="col">
+    <p *ngIf="estado === 'buscando'">Buscando rival...</p>
+    <div *ngIf="estado === 'jugando' && (partida.ganador || partida.empate)" class="fin-partida">
+      <div class="mensaje">
+        <p *ngIf="partida.ganador" class="mensaje-ganador">¡Felicidades! Has ganado la partida.</p>
+        <p *ngIf="!partida.ganador && partida.empate" class="mensaje-empate">La partida ha terminado en empate.</p>
+        <p *ngIf="!partida.ganador" class="mensaje-perdedor">Tu oponente ha ganado la partida. ¡Inténtalo de nuevo!</p>
+        <button (click)="volverAHome()" class="boton-volver">Volver a la home</button>
+      </div>
     </div>
+    <div *ngIf="estado === 'jugando'" class="tablero" [ngClass]="{'no-interactivo': !partida.meToca}">
+      <div class="fila" *ngFor="let fila of [0, 1, 2, 3, 4, 5]">
+        <div class="casilla" *ngFor="let col of [0, 1, 2, 3, 4, 5, 6]"
+             (mouseenter)="setColumnHover(col)" (mouseleave)="cleanColumnHover()"
+             [ngClass]="{'columna-hover': columnaHover === col}"
+             (click)="ponerFicha(col)" >
+          <span class="circulo" [ngClass]="getClaseCasilla(partida.casillas[fila][col])"></span>
+        </div>
+      </div>
+      <p *ngIf="partida.meToca && !partida.ganador && !partida.empate">¡Es tu turno!</p>
+      <p *ngIf="!partida.meToca && !partida.ganador && !partida.empate">Esperando movimiento del rival...</p>
+    </div>    
+  </div>
+  <div class="col">
+    <app-chat></app-chat>
   </div>
 </div>

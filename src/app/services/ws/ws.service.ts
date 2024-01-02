@@ -39,4 +39,14 @@ export class WsService {
       console.error('Error en la conexión WebSocket:', error);
     };
   }
+
+  send(message: any): void {
+    var sessionId = sessionStorage.getItem("session_id");
+    const socket = new WebSocket(socketUrl + '?httpSessionId=' + sessionId);
+    if (socket.readyState === WebSocket.OPEN) {
+      socket.send(JSON.stringify(message));
+    } else {
+      console.error('La conexión WebSocket no está abierta.');
+    }
+  }
 }

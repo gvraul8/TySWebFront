@@ -6,6 +6,8 @@ import { serverHost, serverPort } from '../../app.properties';
 
 const url4RStart = `http://${serverHost}:${serverPort}/matches/start?juego=Tablero4R`;
 const url4RPlay = `http://${serverHost}:${serverPort}/matches/play?juego=Tablero4R`;
+const url4RPoner = `http://${serverHost}:${serverPort}/matches/poner`;
+
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +32,14 @@ export class RayaService {
         console.error('play() error:', error);
       }
     )
+  }
+
+  ponerFicha(idPartida: string, columna: number): Observable<any> {
+    const requestBody = {
+      "id": idPartida,
+      "columna": columna
+    };
+  
+    return this.httpClient.post(url4RPoner, requestBody, { withCredentials: true });
   }
 }

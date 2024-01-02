@@ -1,15 +1,21 @@
 <div class="header">
-    <div class="logo">
-      <img src="assets/logoESI.png" alt="Logo" width="100" height="100">
-    </div>
-    <div class="header-text">
-      ESIConnect4Fleet
-      </div>
-    <div class="links">
-      <ng-container *ngIf="isLoggedIn; else showLoginLink">
-        <a (click)="logout()">Cerrar sesión</a>
-      </ng-container>
-      <ng-template #showLoginLink>
-        <a routerLink="Login">Iniciar sesión</a>
-      </ng-template>    </div>
+  <div class="logo">
+    <img src="assets/logoESI.png" alt="Logo" width="100" height="100">
   </div>
+  <div class="header-text">
+    ESIConnect4Fleet
+  </div>
+  <div class="links">
+    <ng-container *ngIf="isLoggedIn; else showLoginLink">
+      <div>
+        <strong>{{ username }}</strong>
+      </div>
+      <div>
+        <a (click)="logout()">Cerrar sesión</a>
+      </div>
+    </ng-container>
+    <ng-template #showLoginLink>
+      <a routerLink="Login">Iniciar sesión</a>
+    </ng-template>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginRequest } from './loginRequest';
+import { LoginRequest, RegisterRequest } from './authRequest';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from 'src/app/user/user';
@@ -19,15 +19,15 @@ export class LoginService {
 
   constructor(private client: HttpClient) { }
   
-  registrarUsuario(usuario: User): Observable<User> {
-    let info = {
-      nombre: usuario.nombre,
-      email: usuario.email,
-      pwd1: usuario.pwd1,
-      pwd2: usuario.pwd2
-    }
-    console.log('Valor de info:', info);
-    return this.client.post<any>(this.apiRegisterURL, info)
+  registrarUsuario(credentials: RegisterRequest): Observable<any> {
+    console.log('LoginService.registrarUsuario():', credentials);
+    return this.client.post(this.apiRegisterURL, credentials, { withCredentials: true }).pipe(
+      tap(
+        (error) => {
+          console.error('LoginService.registrarUsuario() error:', error);
+        }
+      )
+    );
   } 
 
   login(credentials: LoginRequest): Observable<any> {

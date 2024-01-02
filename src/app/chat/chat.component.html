@@ -1,0 +1,13 @@
+<div *ngIf="isConnected">
+    <div *ngFor="let message of messages">
+      <p>{{ message.texto }} - {{ message.remitente }}</p>
+    </div>
+  
+    <input [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." />
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
+  
+  <div *ngIf="!isConnected">
+    <p>Conectando al chat...</p>
+  </div>
+  

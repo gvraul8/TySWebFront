@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/auth/login.service';
+import { LoginService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/user/user';
 
 @Component({
@@ -9,12 +9,19 @@ import { User } from 'src/app/user/user';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
+  username: string = '';
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
     this.loginService.currentUserLoginOn.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
+    });
+
+    this.loginService.currentUserData.subscribe((data) => {
+      this.username = data.nombre;
+      console.log('Valor de this.username:', this.username)
+
     });
   }
 

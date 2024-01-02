@@ -7,8 +7,8 @@ export interface Tablero4R {
     players: Player[];
     meToca: boolean;
     id: string;
-    ganador: Player | null;
-    perdedor: Player | null;
+    ganador: boolean;
+    empate: boolean;
     casillas: string[][];
 }
   

@@ -38,17 +38,14 @@
     </div>
     <span *ngIf="errorMessage" class="error-message">{{ errorMessage }}</span>
     <br />
-    <button type="submit" [disabled]="registerForm.invalid">Registrarse</button>
+    <button type="submit" [disabled]="registerForm.invalid" class="register-button">Registrarse</button>
     <br />
     <div class="login-message">
       ¿Ya tienes cuenta? <a routerLink="/Login">Iniciar sesión</a>
     </div>
   </form>
-
-  <span *ngIf="respuestaOK">Te has registrado correctamente.</span>
-  <span *ngIf="respuestaOK">Te hemos enviado un email de confirmación.</span>
-
-  <button (click)="bindeo()">Prueba bindeo</button>
-
-
+  <div *ngIf="respuestaOK" class="registro-exitoso">
+    <p>Usuario creado correctamente.</p>
+    <button (click)="volverALogin()">Iniciar sesión</button>
+  </div>
 </div>

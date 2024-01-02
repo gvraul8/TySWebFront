@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../user/user';
 //import { UserSService } from '../user-s.service';
-import { LoginService } from '../services/auth/login.service';
+import { LoginService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -59,7 +59,7 @@ export class RegisterComponent {
     }
   }
 
-  bindeo() {
-    console.log(this.registerForm.value);
+  volverALogin() {
+    window.location.href = '/Login';
   }
 }

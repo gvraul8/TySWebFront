@@ -3,6 +3,8 @@ import { RayaService } from '../services/juegos/raya.service';
 import { Raya } from '../raya/raya';
 import { WsService } from '../services/ws/ws.service';
 import { Tablero4R } from '../services/juegos/rayaResponse';
+import { ChatComponent } from '../chat/chat.component';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-raya',
@@ -14,14 +16,15 @@ export class RayaComponent implements OnInit {
   idPartida: string = '';
   estado: string = 'buscando';
   wsService: WsService = new WsService;
+  @ViewChild(ChatComponent) chatComponent!: ChatComponent;
 
   constructor(private rayaService: RayaService) {
     this.partida = new Raya({
       players: [],
       meToca: false,
       id: '',
-      ganador: null,
-      perdedor: null,
+      ganador: false,
+      empate: false,
       casillas: []
     });
 
@@ -31,6 +34,18 @@ export class RayaComponent implements OnInit {
 
   ngOnInit() {
     this.iniciarPartida();
+  }
+
+  columnaHover: number | null = null;
+
+  // Método para establecer la columna con hover
+  setColumnHover(col: number) {
+    this.columnaHover = col;
+  }
+
+  // Método para reiniciar la columna con hover cuando se deja de hacer hover
+  cleanColumnHover() {
+    this.columnaHover = null;
   }
 
   getClaseCasilla(valor: string): string {
@@ -77,6 +92,21 @@ export class RayaComponent implements OnInit {
       console.log("Nueva partida lista");
       this.jugar(data);
     }
+    else if (data.tipo == "MOVEMENT") {
+      console.log("Movimiento recibido");
+      this.actualizarMovimiento(data);
+    }
+    else if (data.tipo == "MATCH_END") {
+      console.log("Partida terminada");
+      this.actualizarMovimiento(data);
+      this.partida.empate = data.empate;
+      this.partida.ganador = data.ganador;
+      if (this.partida.empate) {
+        console.log("Empate");
+      } else if (this.partida.ganador) {
+        console.log("Ganador:", this.partida.ganador);
+      }
+    }
   }
 
   // Manejador del evento ws de nueva partida. Se recibe este mensaje cuando el servidor ha encontrado a 
@@ -85,8 +115,31 @@ export class RayaComponent implements OnInit {
     this.estado = 'jugando';
     console.log('Jugando partida:', data);
     this.partida = new Raya(data);
-
+    
     console.log('this.partida:', this.partida);
+  }
 
+  ponerFicha(columna: number) {
+    if (this.estado === 'jugando' && this.partida.meToca) {
+      console.log('Poniendo ficha en columna:', columna);
+      this.rayaService.ponerFicha(this.idPartida, columna).subscribe(
+        (response) => {
+          console.log('Ficha colocada:', response);
+        },
+        (error) => {
+          console.error('Error al colocar la ficha:', error);
+        }
+      );
+    }
+  }
+
+  actualizarMovimiento(data: any) {
+    this.partida.casillas = data.casillas;
+    this.partida.meToca = data.meToca;
+    console.log('this.partida después del movimiento:', this.partida);
+  }
+
+  volverAHome() {
+    window.location.href = '/Home';
   }
 }

@@ -67,4 +67,61 @@
   
   .login-message a:hover {
     text-decoration: underline;
+    color: #385279;
   }
+
+.registro-exitoso {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  background-color: #ffffff;
+  border: 1px solid #3498db;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.registro-exitoso p {
+  color: #3498db;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.registro-exitoso button {
+  background-color: #6683af;
+  color: #ffffff;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registro-exitoso button:hover {
+  background-color: #385279;
+}
+
+.custom-form button.register-button {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: none;
+  font-size: 0.875rem;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #6683af;
+  width: 100%;
+  display: block;
+  padding: 0.875rem 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-form button.register-button:hover {
+  background-color: #385279;
+}
