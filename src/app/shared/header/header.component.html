@@ -7,15 +7,19 @@
   </div>
   <div class="links">
     <ng-container *ngIf="isLoggedIn; else showLoginLink">
-      <div>
-        <strong>{{ username }}</strong>
-      </div>
-      <div>
-        <a (click)="logout()">Cerrar sesión</a>
+      <div class="user-info" (click)="toggleMenu()">
+        <p class="welcome-text">Bienvenido <strong>{{ username }}</strong></p>
+        <div class="menu-container">
+          <span class="menu-icon">&#9776;</span>
+          <div class="menu" [class.show]="showMenu">
+            <a routerLink="Estadisticas">Mis estadísticas</a>
+            <a (click)="logout()">Cerrar sesión</a>
+          </div>
+        </div>
       </div>
     </ng-container>
     <ng-template #showLoginLink>
-      <a routerLink="Login">Iniciar sesión</a>
+      <a class="login-link" routerLink="Login">Iniciar sesión</a>
     </ng-template>
   </div>
 </div>

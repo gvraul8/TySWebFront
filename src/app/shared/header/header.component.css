@@ -1,48 +1,81 @@
-/* Estilo para el header */
 .header {
-    background-color: #365d90d7;
-    padding: 20px;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Estilo para el logo */
-  .logo img {
-    width: 100px;
-    height: 100px;
-  }
-  
-  /* Estilo para el texto del header */
-  .header-text {
-    flex-grow: 1;
-    margin: 0 20px;
-  }
-  
-  /* Estilo para los enlaces */
-  .links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2em;
-    transition: color 0.3s ease;
-  }
-  
-  .links a:hover {
-    color: #000000; /* Color de cambio al pasar el ratón */
-  }
+  background-color: #365d90d7;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .logo img {
-    max-width: 70px; 
-    height: auto; 
-    display: block; 
-    margin: 0 auto; 
-  }
-  
-  .header-text {
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 5px;
-    align-content: lef; 
-  }
-  
+.logo img {
+  max-width: 70px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.header-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.links .user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.links p.welcome-text {
+  margin: 0;
+  margin-right: 5px;
+}
+
+.menu-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0; /* Ajuste para que el menú se expanda hacia la izquierda /
+  background-color: #365d90d7;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-left: 10px; / Ajuste para separar el menú del icono */
+}
+.menu.show {
+  display: block;
+  background-color: #2a405cd7;
+}
+
+.menu a {
+  color: #fff;
+  padding: 10px;
+  display: block;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background-color: #000000;
+}
+
+.menu-icon {
+  font-size: 1.5em;
+  margin-right: 5px;
+}
+
+.login-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
+}
+
+.login-link:hover {
+  color: #000000;
+}

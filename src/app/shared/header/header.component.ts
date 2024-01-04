@@ -10,6 +10,8 @@ import { User } from 'src/app/user/user';
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
   username: string = '';
+  showMenu: boolean = false;
+
 
   constructor(private loginService: LoginService) { }
 
@@ -24,9 +26,12 @@ export class HeaderComponent implements OnInit {
       this.username = data.nombre;
       console.log('Valor de this.username:', this.username)
 
-      this.llamarServicioEstadisticas(data.id);
 
     });
+  }
+
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
   }
 
   // Método para cerrar sesión
@@ -35,17 +40,10 @@ export class HeaderComponent implements OnInit {
     this.loginService.currentUserLoginOn.next(false);
     sessionStorage.removeItem('session_id');
   }
+  
 
-  private llamarServicioEstadisticas(idUsuario: string) {
-    // Llamar al servicio de estadísticas
-    this.loginService.obtenerEstadisticasUsuario(idUsuario).subscribe(
-      (data) => {
-        console.log('Datos de estadísticas recibidos en AppComponent:', data);
-        // Puedes hacer algo con los datos recibidos si es necesario
-      },
-      (error) => {
-        console.error('Error al obtener estadísticas en AppComponent:', error);
-      }
-    );
+  viewStatistics() {
+
   }
+
 }
