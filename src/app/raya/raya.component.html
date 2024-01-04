@@ -1,11 +1,11 @@
 <div class="container"> 
   <div class="col">
     <p *ngIf="estado === 'buscando'">Buscando rival...</p>
-    <div *ngIf="estado === 'jugando' && (partida.ganador || partida.empate)" class="fin-partida">
+    <div *ngIf="estado === 'jugando' && endGame" class="fin-partida">
       <div class="mensaje">
         <p *ngIf="partida.ganador" class="mensaje-ganador">¡Felicidades! Has ganado la partida.</p>
         <p *ngIf="!partida.ganador && partida.empate" class="mensaje-empate">La partida ha terminado en empate.</p>
-        <p *ngIf="!partida.ganador" class="mensaje-perdedor">Tu oponente ha ganado la partida. ¡Inténtalo de nuevo!</p>
+        <p *ngIf="!partida.ganador " class="mensaje-perdedor">Tu oponente ha ganado la partida. ¡Inténtalo de nuevo!</p>
         <button (click)="volverAHome()" class="boton-volver">Volver a la home</button>
       </div>
     </div>

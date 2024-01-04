@@ -1,10 +1,12 @@
 export class User{
+    id: string;
     nombre: string;
     email: string;
     pwd1: string;
     pwd2: string;
 
     constructor(){
+        this.id = "";
         this.nombre = "";
         this.email = "";
         this.pwd1 = "";

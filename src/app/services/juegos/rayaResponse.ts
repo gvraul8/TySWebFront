@@ -1,6 +1,7 @@
 export interface RayaResponse {
     id: string;
     status: string;
+    httpSessionId: string;
 }
 
 export interface Tablero4R {

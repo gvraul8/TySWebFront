@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { serverHost, serverPort } from '../../app.properties';
-import { RayaComponent } from '../../raya/raya.component';
 
 const socketUrl = `ws://${serverHost}:${serverPort}/wsGames`;
 
@@ -10,43 +9,52 @@ const socketUrl = `ws://${serverHost}:${serverPort}/wsGames`;
 })
 export class WsService {
 
+  private gameAndChatSocket: WebSocket | undefined;
+
   constructor() { }
 
-  initWebSocket(msgHandler: (data: any) => void) {
-    var sessionId = sessionStorage.getItem("session_id");
-    console.log("httpSessionId: " + sessionId);
-    console.log("socketUrl: " + socketUrl + '?httpSessionId=' + sessionId);
-    const socket = new WebSocket(socketUrl + '?httpSessionId=' + sessionId);
+  initWebSocket(gameMsgHandler: (data: any) => void, chatMsgHandler: (data: any) => void) {
+    const sessionId = sessionStorage.getItem("session_id");
+    const url = sessionId ? `${socketUrl}?httpSessionId=${sessionId}` : socketUrl;
 
-    // Manejar eventos del WebSocket según tus necesidades
-    socket.onopen = (event) => {
+    this.gameAndChatSocket = new WebSocket(url);
+
+    this.gameAndChatSocket.onopen = (event) => {
       console.log('Conexión WebSocket abierta:', event);
     };
 
-    socket.onmessage = (event) => {
-      let data = JSON.parse(event.data)
-
+    this.gameAndChatSocket.onmessage = (event) => {
+      let data = JSON.parse(event.data);
       console.log('Mensaje recibido:', data);
 
-      msgHandler(data);
+      if (data.tipo === 'MENSAJE PRIVADO') {
+        // Manejar mensajes de chat
+        chatMsgHandler(data);
+      } else {
+        // Manejar mensajes de juegos
+        gameMsgHandler(data);
+      }
     };
 
-    socket.onclose = (event) => {
+    this.gameAndChatSocket.onclose = (event) => {
       console.log('Conexión WebSocket cerrada:', event);
     };
 
-    socket.onerror = (error) => {
+    this.gameAndChatSocket.onerror = (error) => {
       console.error('Error en la conexión WebSocket:', error);
     };
   }
 
-  send(message: any): void {
-    var sessionId = sessionStorage.getItem("session_id");
-    const socket = new WebSocket(socketUrl + '?httpSessionId=' + sessionId);
-    if (socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify(message));
+  sendGameMessage(message: any): void {
+    if (this.gameAndChatSocket && this.gameAndChatSocket.readyState === WebSocket.OPEN) {
+      this.gameAndChatSocket.send(JSON.stringify(message));
     } else {
       console.error('La conexión WebSocket no está abierta.');
     }
+  }
+
+  sendChatMessage(message: any): void {
+    // Puedes usar la misma función sendGameMessage para enviar mensajes de chat
+    this.sendGameMessage(message);
   }
 }

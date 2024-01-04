@@ -15,6 +15,7 @@ export class RayaComponent implements OnInit {
   partida: Tablero4R;
   idPartida: string = '';
   estado: string = 'buscando';
+  endGame: boolean = false;
   wsService: WsService = new WsService;
   @ViewChild(ChatComponent) chatComponent!: ChatComponent;
 
@@ -71,7 +72,9 @@ export class RayaComponent implements OnInit {
         this.idPartida = response.id;
 
         // Iniciar conexión ws con el servidor cuando la partida se ha creado correctamente
-        this.wsService.initWebSocket(this.eventsHandler);
+        sessionStorage.setItem('session_id', response.httpSessionId);
+        this.wsService.initWebSocket(this.eventsHandler, this.chatComponent.handleMessage.bind(this.chatComponent));
+
 
         // Si la partida ya está lista, con dos jugadores, se puede empezar a jugar
         if (response.status == 'READY') {
@@ -90,6 +93,7 @@ export class RayaComponent implements OnInit {
   eventsHandler(data: any) {
     if (data.tipo == "START") {
       console.log("Nueva partida lista");
+      console.log(data);
       this.jugar(data);
     }
     else if (data.tipo == "MOVEMENT") {
@@ -97,6 +101,7 @@ export class RayaComponent implements OnInit {
       this.actualizarMovimiento(data);
     }
     else if (data.tipo == "MATCH_END") {
+      this.endGame = true;
       console.log("Partida terminada");
       this.actualizarMovimiento(data);
       this.partida.empate = data.empate;
@@ -142,4 +147,5 @@ export class RayaComponent implements OnInit {
   volverAHome() {
     window.location.href = '/Home';
   }
+
 }
