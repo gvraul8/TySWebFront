@@ -15,7 +15,7 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
       // Inicia la conexión WebSocket para el chat
-      this.wsService.initWebSocket(this.handleMessage.bind(this), this.handleMessage.bind(this));
+      //this.wsService.initWebSocket(this.handleMessage.bind(this), this.handleMessage.bind(this));
       this.isConnected = true;
   }
 

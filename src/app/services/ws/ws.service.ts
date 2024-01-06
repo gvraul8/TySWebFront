@@ -10,10 +10,16 @@ const socketUrl = `ws://${serverHost}:${serverPort}/wsGames`;
 export class WsService {
 
   private gameAndChatSocket: WebSocket | undefined;
+  wsConnected: boolean = false;
 
   constructor() { }
 
   initWebSocket(gameMsgHandler: (data: any) => void, chatMsgHandler: (data: any) => void) {
+    if (this.wsConnected) {
+      console.log('Conexión WebSocket ya está abierta.');
+      return;
+    }
+    console.log('INICIANDO CONEXIÓN WEBSOCKET');
     const sessionId = sessionStorage.getItem("session_id");
     const url = sessionId ? `${socketUrl}?httpSessionId=${sessionId}` : socketUrl;
 
@@ -21,6 +27,7 @@ export class WsService {
 
     this.gameAndChatSocket.onopen = (event) => {
       console.log('Conexión WebSocket abierta:', event);
+      this.wsConnected = true;
     };
 
     this.gameAndChatSocket.onmessage = (event) => {
@@ -38,10 +45,12 @@ export class WsService {
 
     this.gameAndChatSocket.onclose = (event) => {
       console.log('Conexión WebSocket cerrada:', event);
+      this.wsConnected = false;
     };
 
     this.gameAndChatSocket.onerror = (error) => {
       console.error('Error en la conexión WebSocket:', error);
+      this.wsConnected = false;
     };
   }
 

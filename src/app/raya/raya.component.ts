@@ -5,6 +5,7 @@ import { WsService } from '../services/ws/ws.service';
 import { Tablero4R } from '../services/juegos/rayaResponse';
 import { ChatComponent } from '../chat/chat.component';
 import { ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-raya',
@@ -20,7 +21,7 @@ export class RayaComponent implements OnInit {
   wsService: WsService = new WsService;
   @ViewChild(ChatComponent) chatComponent!: ChatComponent;
 
-  constructor(private rayaService: RayaService) {
+  constructor(private router: Router, private rayaService: RayaService) {
     this.partida = new Raya({
       players: [],
       meToca: false,
@@ -74,6 +75,7 @@ export class RayaComponent implements OnInit {
 
         // Iniciar conexión ws con el servidor cuando la partida se ha creado correctamente
         sessionStorage.setItem('session_id', response.httpSessionId);
+        console.log('session_id GUARDADO despues de crear la partida:', sessionStorage.getItem('session_id'));
         this.wsService.initWebSocket(this.eventsHandler, this.chatComponent.handleMessage.bind(this.chatComponent));
 
 
@@ -154,8 +156,9 @@ export class RayaComponent implements OnInit {
   }
 
   volverAHome() {
-    window.location.href = '/Home';
+    this.router.navigate(['/Home']);
   }
+  
 
   // Envia un post despues de que el usuario pulse el boton de abandonar partida
   abandonarPartida() {

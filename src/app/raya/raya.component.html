@@ -26,7 +26,7 @@
     </div>
     <div *ngIf="abandonedGame" class="fin-partida" >
       <div class="mensaje">
-        <p *ngIf="partida.ganador" class="mensaje-ganador">¡Felicidades! Has ganado la partida. Tú rival ha abandonado la partida.</p>
+        <p *ngIf="partida.ganador" class="mensaje-ganador">¡Felicidades! Has ganado la partida.<br> Tú rival ha abandonado la partida.</p>
         <p *ngIf="!partida.ganador " class="mensaje-perdedor">Has abandonado la partida y se te dará como perdida.</p>
         <button (click)="volverAHome()" class="boton-volver">Volver a la home</button>
       </div>
