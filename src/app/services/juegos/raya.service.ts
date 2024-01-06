@@ -7,6 +7,8 @@ import { serverHost, serverPort } from '../../app.properties';
 const url4RStart = `http://${serverHost}:${serverPort}/matches/start?juego=Tablero4R`;
 const url4RPlay = `http://${serverHost}:${serverPort}/matches/play?juego=Tablero4R`;
 const url4RPoner = `http://${serverHost}:${serverPort}/matches/poner`;
+const url4RAbandonar = `http://${serverHost}:${serverPort}/matches/abandonar`;
+
 
 
 @Injectable({
@@ -41,5 +43,10 @@ export class RayaService {
     };
   
     return this.httpClient.post(url4RPoner, requestBody, { withCredentials: true });
+  }
+
+  abandonarPartida(idPartida: string): Observable<any> {
+    return this.httpClient.post(url4RAbandonar, {"id": idPartida}, { withCredentials: true });
+
   }
 }

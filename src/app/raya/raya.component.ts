@@ -16,6 +16,7 @@ export class RayaComponent implements OnInit {
   idPartida: string = '';
   estado: string = 'buscando';
   endGame: boolean = false;
+  abandonedGame: boolean = false;
   wsService: WsService = new WsService;
   @ViewChild(ChatComponent) chatComponent!: ChatComponent;
 
@@ -112,6 +113,14 @@ export class RayaComponent implements OnInit {
         console.log("Ganador:", this.partida.ganador);
       }
     }
+    else if (data.tipo == "ABANDONED") {
+      console.log("Partida abandonada");
+      this.endGame = true;
+      this.actualizarMovimiento(data);
+      this.partida.ganador = data.ganador;
+      this.abandonedGame = true;
+      console.log("abandonedGame:", this.abandonedGame);
+    }
   }
 
   // Manejador del evento ws de nueva partida. Se recibe este mensaje cuando el servidor ha encontrado a 
@@ -148,4 +157,17 @@ export class RayaComponent implements OnInit {
     window.location.href = '/Home';
   }
 
+  // Envia un post despues de que el usuario pulse el boton de abandonar partida
+  abandonarPartida() {
+    if (this.estado === 'jugando' && this.idPartida) {
+      this.rayaService.abandonarPartida(this.idPartida).subscribe(
+        (response) => {
+          console.log('Respuesta a solicitud de abandinar partida:', response);
+        },
+        (error) => {
+          console.error('Error al abandonar la partida:', error);
+        }
+      );
+    }
+  }
 }
