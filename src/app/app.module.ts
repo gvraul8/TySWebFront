@@ -13,7 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './shared/chat/chat.component';
+import { PlayersDataComponent } from './shared/players-data/players-data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { ChatComponent } from './chat/chat.component';
     FooterComponent,
     HomeComponent,
     ChatComponent,
+    PlayersDataComponent
   ],
   imports: [
     BrowserModule,

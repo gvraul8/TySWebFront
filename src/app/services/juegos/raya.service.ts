@@ -18,10 +18,10 @@ export class RayaService {
 
   constructor(private httpClient: HttpClient) {}
 
-  iniciarPartida(): Observable<RayaResponse> {
+  iniciarPartida(latitud: string, longitud: string): Observable<RayaResponse> {
     // Iniciar conexión ws con el servidor cuando la partida se ha creado correctamente
 
-    return this.httpClient.get<RayaResponse>(url4RStart, {withCredentials: true});
+    return this.httpClient.post<RayaResponse>(url4RStart,  {"lat": latitud, "lon": longitud }, {withCredentials: true});
   }
 
   play(idPartida: String) {

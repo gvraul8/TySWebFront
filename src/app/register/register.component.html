@@ -36,6 +36,7 @@
         El campo es obligatorio
       </div>
     </div>
+    <br />
     <span *ngIf="errorMessage" class="error-message">{{ errorMessage }}</span>
     <br />
     <button type="submit" [disabled]="registerForm.invalid" class="register-button">Registrarse</button>

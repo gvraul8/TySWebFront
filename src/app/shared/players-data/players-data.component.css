@@ -1,0 +1,14 @@
+.player-info {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .player-info h2 {
+    color: #007bff;
+  }
+  
+  .player-info p {
+    color: #333;
+  }
+  

@@ -3,7 +3,7 @@ import { RayaService } from '../services/juegos/raya.service';
 import { Raya } from '../raya/raya';
 import { WsService } from '../services/ws/ws.service';
 import { Tablero4R } from '../services/juegos/rayaResponse';
-import { ChatComponent } from '../chat/chat.component';
+import { ChatComponent } from '../shared/chat/chat.component';
 import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -19,6 +19,9 @@ export class RayaComponent implements OnInit {
   endGame: boolean = false;
   abandonedGame: boolean = false;
   wsService: WsService = new WsService;
+
+  playersData: string[] = [];
+
   @ViewChild(ChatComponent) chatComponent!: ChatComponent;
 
   constructor(private router: Router, private rayaService: RayaService) {
@@ -33,10 +36,38 @@ export class RayaComponent implements OnInit {
 
     // Asignación de la función de flecha a eventsHandler
     this.eventsHandler = this.eventsHandler.bind(this);
+
+   
   }
 
   ngOnInit() {
-    this.iniciarPartida();
+    this.obtenerLocalizacion()
+      .then(coords => {
+        // coords contiene la latitud y longitud
+        this.iniciarPartida(coords.latitud, coords.longitud);
+      })
+      .catch(error => {
+        console.log("Error al obtener la localización: " + error.message);
+        // En caso de error, iniciar la partida con valores predeterminados o nulos
+        this.iniciarPartida("", "");
+      });
+  }
+
+  private obtenerLocalizacion(): Promise<{ latitud: string, longitud: string }> {
+    return new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const latitud = lat.toString();
+          const longitud = lon.toString();
+          resolve({ latitud, longitud });
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
   }
 
   columnaHover: number | null = null;
@@ -66,8 +97,8 @@ export class RayaComponent implements OnInit {
 
   // Manejador del botón de iniciar partida. Envía una petición al servidor para iniciar una partida
   // y inicializa la conexión WebSocket con el servidor
-  iniciarPartida() {
-    this.rayaService.iniciarPartida().subscribe(
+  iniciarPartida(latitud: string, longitud: string) {
+    this.rayaService.iniciarPartida(latitud, longitud).subscribe(
       (response) => {
         console.log('Partida iniciada:', response);
         this.estado = 'buscando';
@@ -98,6 +129,8 @@ export class RayaComponent implements OnInit {
       console.log("Nueva partida lista");
       console.log(data);
       this.jugar(data);
+      this.playersData = data.players;
+
     }
     else if (data.tipo == "MOVEMENT") {
       console.log("Movimiento recibido");

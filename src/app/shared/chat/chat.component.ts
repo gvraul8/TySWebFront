@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WsService } from '../services/ws/ws.service';
+import { WsService } from '../../services/ws/ws.service';
 
 @Component({
   selector: 'app-chat',

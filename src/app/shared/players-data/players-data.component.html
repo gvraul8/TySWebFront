@@ -1,0 +1,23 @@
+<div class="player-info">
+  <h2>{{ player1 }}</h2>
+  <div *ngIf="weather1">
+    <p>Ciudad: {{ ciudad1 }}</p>
+    <p>Temperatura máx:{{ weather1.temperaturaMax}} </p>
+    <p>Temperatura min:{{ weather1.temperaturaMin}} </p>
+  </div>
+  <div *ngIf="!weather1">
+    <p> No hemos podido obtener acceso a su ubicación</p>
+  </div>
+</div>
+
+<div class="player-info">
+  <h2>{{ player2 }}</h2>
+  <div *ngIf="weather2">
+    <p>Ciudad: {{ ciudad2 }}</p>
+    <p>Temperatura máx:{{ weather2.temperaturaMax}} </p>
+    <p>Temperatura min:{{ weather2.temperaturaMin}} </p>
+  </div>
+  <div *ngIf="!weather2">
+    <p> No hemos podido obtener acceso a su ubicación</p>
+  </div>
+</div>

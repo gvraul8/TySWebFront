@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from '../user/user';
+import { User } from '../models/user/user';
 //import { UserSService } from '../user-s.service';
 import { LoginService } from '../services/auth/auth.service';
 
@@ -21,8 +21,7 @@ export class RegisterComponent {
   usuario: User;
   respuestaOK: boolean;
   errorMessage: string = '';
-
-
+  
   constructor(private userService: LoginService) {
     this.usuario = new User();
     this.respuestaOK = false;
@@ -54,6 +53,13 @@ export class RegisterComponent {
         },
         (error) => {
           console.error('Error al registrar usuario:', error);
+          if (error.status === 403 && error.error.message === 'El nombre debe tener al menos 5 caracteres') {
+            this.errorMessage = 'El nombre de usuario debe tener al menos 5 caracteres';
+          } else if (error.status === 403) {
+            this.errorMessage = 'El email introducido ya está registrado';
+          } else {
+            this.errorMessage = 'Error al registrar usuario';
+          }
         }
       );
     }

@@ -35,4 +35,7 @@
   <div class="col">
     <app-chat></app-chat>
   </div>
+  <div *ngIf="estado === 'jugando'">  
+    <app-players-data [playersData]="playersData"></app-players-data>
+  </div>
 </div>

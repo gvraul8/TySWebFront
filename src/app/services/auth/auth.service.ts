@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LoginRequest, RegisterRequest } from './authRequest';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { User } from 'src/app/user/user';
+import { User } from 'src/app/models/user/user';
 import { serverHost, serverPort } from '../../app.properties';
 
 @Injectable({
