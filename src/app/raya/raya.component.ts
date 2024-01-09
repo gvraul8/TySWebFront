@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RayaService } from '../services/juegos/raya.service';
 import { Raya } from '../raya/raya';
 import { WsService } from '../services/ws/ws.service';
+import { WsChat } from '../services/wsChat/wsChat.service';
 import { Tablero4R } from '../services/juegos/rayaResponse';
 import { ChatComponent } from '../shared/chat/chat.component';
 import { ViewChild } from '@angular/core';
@@ -19,6 +20,7 @@ export class RayaComponent implements OnInit {
   endGame: boolean = false;
   abandonedGame: boolean = false;
   wsService: WsService = new WsService;
+  wsChat: WsChat = new WsChat;
 
   playersData: string[] = [];
 
@@ -107,7 +109,8 @@ export class RayaComponent implements OnInit {
         // Iniciar conexión ws con el servidor cuando la partida se ha creado correctamente
         sessionStorage.setItem('session_id', response.httpSessionId);
         console.log('session_id GUARDADO despues de crear la partida:', sessionStorage.getItem('session_id'));
-        this.wsService.initWebSocket(this.eventsHandler, this.chatComponent.handleMessage.bind(this.chatComponent));
+        this.wsService.initWebSocket(this.eventsHandler);
+        this.wsChat.initChatWebSocket(this.chatComponent.handleMessage.bind(this.chatComponent));
 
 
         // Si la partida ya está lista, con dos jugadores, se puede empezar a jugar
