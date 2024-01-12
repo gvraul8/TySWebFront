@@ -111,3 +111,45 @@ body {
 .fin-partida button:hover {
   background-color: #0056b3;
 }
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+}
+
+.column-players {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 30%;
+}
+
+.column-chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 30%;
+}
+
+/* Agregar estilos para el botón de abandonar */
+.boton-abandonar {
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px; /* Ajustar el margen según sea necesario */
+}
+
+.boton-abandonar:hover {
+  background-color: #c9302c;
+}

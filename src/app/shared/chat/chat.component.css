@@ -1,0 +1,123 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Fira Code';
+}
+
+body {
+  height: 100%;
+  background: #95a5a6;
+}
+
+.chat-box {
+  background: rgb(238, 238, 238);
+  width: 300px;
+  border-radius: 5px;
+  margin: 20px; 
+}
+
+.chat-head {
+  width: 300px;
+  height: 50px;
+  background: #2c3e50;
+  border-radius: 5px 5px 0px 0px;
+  color: white;
+  display: inline-block;
+}
+
+.chat-body {
+  height: 355px;
+  width: inherit;
+  overflow: auto;
+  margin-bottom: 45px;
+}
+
+.chat-text {
+  height: 45px;
+  width: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.chat-text textarea {
+  flex: 1;
+  box-sizing: border-box;
+  border: 1px solid #bdc3c7;
+  padding: 10px;
+  resize: none;
+}
+
+.chat-text textarea:active,
+.chat-text textarea:focus,
+.chat-text textarea:hover {
+  border-color: royalblue;
+}
+
+.msg-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.msg-send {
+  align-self: flex-end;
+  background: #2ecc71;
+}
+
+.msg-receive {
+  align-self: flex-start;
+  background: #3498db;
+}
+
+.msg-send,
+.msg-receive {
+  width: 200px;
+  height: 35px;
+  padding: 5px 5px 5px 10px;
+  margin: 10px auto;
+  border-radius: 3px;
+  line-height: 30px;
+  position: relative;
+  color: white;
+}
+
+.msg-receive:before {
+  content: '';
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border: 15px solid;
+  border-color: transparent #3498db transparent transparent;
+  left: -29px;
+  top: 7px;
+}
+
+.msg-send:after {
+  content: '';
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border: 15px solid;
+  border-color: transparent transparent transparent #2ecc71;
+  right: -29px;
+  top: 7px;
+}
+
+.msg-receive:hover,
+.msg-send:hover {
+  opacity: 0.9;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #007bb5;
+}

@@ -1,13 +1,19 @@
-<div *ngIf="isConnected">
-    <div *ngFor="let message of messages">
-      <p>{{ message.texto }} - {{ message.remitente }}</p>
+<div class="chat-box">
+  <div class="chat-head">
+    <h2>Chat</h2>
+    <!-- Puedes agregar un icono aquí si lo necesitas -->
+  </div>
+
+  <div class="chat-body">
+    <div class="msg-container">
+      <div *ngFor="let message of messages" [ngClass]="{'msg-send': message.user === 'TuNombreDeUsuario', 'msg-receive': message.user !== 'TuNombreDeUsuario'}">
+        <p>{{ message.user }}: {{ message.msg }}</p>
+      </div>
     </div>
-  
-    <input [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." />
-    <button (click)="sendMessage()">Enviar</button>
   </div>
-  
-  <div *ngIf="!isConnected">
-    <p>Conectando al chat...</p>
+
+  <div class="column">
+    <textarea [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." (keydown.enter)="sendMessage()"></textarea>
+    <button (click)="sendMessage()" class="custom-button">Enviar</button>
   </div>
-  
+</div>

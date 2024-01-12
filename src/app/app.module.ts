@@ -15,6 +15,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './shared/chat/chat.component';
 import { PlayersDataComponent } from './shared/players-data/players-data.component';
+import { FlotaComponent } from './flota/flota.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { PlayersDataComponent } from './shared/players-data/players-data.compone
     FooterComponent,
     HomeComponent,
     ChatComponent,
-    PlayersDataComponent
+    PlayersDataComponent,
+    FlotaComponent
   ],
   imports: [
     BrowserModule,

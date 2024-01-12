@@ -1,5 +1,9 @@
 <div class="container"> 
-  <div class="col">
+
+  <div *ngIf="estado === 'jugando'" class="column-players">  
+    <app-players-data [playersData]="playersData"></app-players-data>
+  </div>
+  <div class="column">
     <p *ngIf="estado === 'buscando'">Buscando rival...</p>
     
     <div *ngIf="estado === 'jugando'" class="tablero" [ngClass]="{'no-interactivo': !partida.meToca}">
@@ -14,8 +18,9 @@
           <span class="circulo" [ngClass]="getClaseCasilla(partida.casillas[fila][col])"></span>
         </div>
       </div>
+      <button (click)="abandonarPartida()" class="boton-abandonar">Abandonar partida</button>
+
     </div>
-    <button *ngIf="estado === 'jugando'" (click)="abandonarPartida()" class="boton-abandonar">Abandonar partida</button>
     <div *ngIf="estado === 'jugando' && endGame && !abandonedGame" class="fin-partida" >
       <div class="mensaje">
         <p *ngIf="partida.ganador" class="mensaje-ganador">¡Felicidades! Has ganado la partida.</p>
@@ -32,10 +37,8 @@
       </div>
     </div>
   </div>
-  <div class="col">
+  <div class="column-chat">
     <app-chat></app-chat>
   </div>
-  <div *ngIf="estado === 'jugando'">  
-    <app-players-data [playersData]="playersData"></app-players-data>
-  </div>
+
 </div>

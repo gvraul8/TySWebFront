@@ -1,0 +1,43 @@
+<div class="container">
+    <h2>Estado de la Partida</h2>
+    <div *ngIf="partida">
+      <div *ngIf="endGame">
+        <h3>¡Partida Terminada!</h3>
+        <p *ngIf="abandonedGame">La partida fue abandonada.</p>
+        <p *ngIf="partida.empate">¡Es un empate!</p>
+        <p *ngIf="partida.ganador">¡El ganador es {{ partida.ganador }}!</p>
+      </div>
+      <div *ngIf="!endGame">
+        <p>Barcos Hundidos Jugador 1: {{ partida.barcosHundidosJugador1 }}</p>
+        <p>Barcos Hundidos Jugador 2: {{ partida.barcosHundidosJugador2 }}</p>
+        <p>
+          Movimientos Restantes Jugador 1:
+          {{ partida.movimientosRestantesJugador1 }}
+        </p>
+        <p>
+          Movimientos Restantes Jugador 2:
+          {{ partida.movimientosRestantesJugador2 }}
+        </p>
+      </div>
+      <div class="fila" *ngFor="let fila of partida.casillas; let i = index">
+        <div class="casilla" *ngFor="let valor of fila; let j = index"
+             (click)="ponerFicha(j, i)">
+          <span [ngClass]="{
+            'agua': valor === 'D',
+            'barco': valor === 'B',
+            'movimiento-jugador1': valor === 'X' && partida.meToca,
+            'movimiento-jugador2': valor === 'X' && !partida.meToca
+          }">
+            {{ valor === 'D' ? '·' : (valor === 'B' ? 'X' : '') }}
+          </span>
+        </div>
+      </div>
+      
+      
+    </div>
+    <button (click)="abandonarPartida()" *ngIf="estado === 'jugando' && !endGame">
+      Abandonar Partida
+    </button>
+  </div>
+  <app-chat></app-chat>
+  

@@ -25,8 +25,9 @@ export class ChatComponent implements OnInit {
       this.messages.push(data);
       console.log(this.messages)
     }
+    this.messages.push(data);
     console.log('Mensaje de chat manejado:', data);
-    // ... (otro manejo de mensajes según sea necesario)
+    console.log(this.messages)
   }
 
   sendMessage() {

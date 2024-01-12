@@ -58,7 +58,6 @@ export class WsChat {
   }
 
   sendChatMessage(message: any): void {
-
     if (this.chatSocket && this.chatSocket.readyState === WebSocket.OPEN) {
       this.chatSocket.send(JSON.stringify(message));
       console.log("Mensaje", message)
