@@ -7,8 +7,8 @@
     <p *ngIf="estado === 'buscando'">Buscando rival...</p>
     
     <div *ngIf="estado === 'jugando'" class="tablero" [ngClass]="{'no-interactivo': !partida.meToca}">
-      <p *ngIf="partida.meToca && !partida.ganador && !partida.empate">¡Es tu turno!</p>
-      <p *ngIf="!partida.meToca && !partida.ganador && !partida.empate">Esperando movimiento del rival...</p>
+      <p *ngIf="partida.meToca && !partida.ganador && !partida.empate" class="mensaje-grande-negrita">¡Es tu turno!</p>
+      <p *ngIf="!partida.meToca && !partida.ganador && !partida.empate" class="mensaje-grande-negrita">Esperando movimiento del rival...</p>
   
       <div class="fila" *ngFor="let fila of [0, 1, 2, 3, 4, 5]">
         <div class="casilla" *ngFor="let col of [0, 1, 2, 3, 4, 5, 6]"

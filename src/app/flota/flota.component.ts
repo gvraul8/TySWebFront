@@ -80,7 +80,7 @@ export class FlotaComponent implements OnInit {
   columnaHover: number | null = null;
 
   // Método para establecer la columna con hover
-  setColumnHover(col: number) {
+  setColumnHover(col: number, fila: number) {
     this.columnaHover = col;
   }
 
@@ -91,16 +91,20 @@ export class FlotaComponent implements OnInit {
 
   getClaseCasilla(valor: string): string {
     switch (valor) {
-      case 'R':
-        return 'rojo';
-      case 'A':
-        return 'azul';
-      case 'D':
-        return 'blanco';
-      default:
-        return '';
+        case 'A':
+            return 'azul marcar'; // Jugador actual tocó agua
+        case 'O':
+            return 'azul agua'; // Jugador actual tocó su propio barco
+        case 'R':
+            return 'rojo marcar'; // Otro jugador tocó agua
+        case 'F':
+            return 'rojo agua'; // Otro jugador tocó su barco
+        default:
+            return '';
     }
-  }
+}
+
+  
 
   // Manejador del botón de iniciar partida. Envía una petición al servidor para iniciar una partida
   // y inicializa la conexión WebSocket con el servidor

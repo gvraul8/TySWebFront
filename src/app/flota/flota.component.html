@@ -1,43 +1,46 @@
 <div class="container">
-    <h2>Estado de la Partida</h2>
-    <div *ngIf="partida">
-      <div *ngIf="endGame">
-        <h3>¡Partida Terminada!</h3>
-        <p *ngIf="abandonedGame">La partida fue abandonada.</p>
-        <p *ngIf="partida.empate">¡Es un empate!</p>
-        <p *ngIf="partida.ganador">¡El ganador es {{ partida.ganador }}!</p>
-      </div>
-      <div *ngIf="!endGame">
-        <p>Barcos Hundidos Jugador 1: {{ partida.barcosHundidosJugador1 }}</p>
-        <p>Barcos Hundidos Jugador 2: {{ partida.barcosHundidosJugador2 }}</p>
-        <p>
-          Movimientos Restantes Jugador 1:
-          {{ partida.movimientosRestantesJugador1 }}
-        </p>
-        <p>
-          Movimientos Restantes Jugador 2:
-          {{ partida.movimientosRestantesJugador2 }}
-        </p>
-      </div>
+  <div *ngIf="estado === 'jugando'" class="column-players">
+    <app-players-data [playersData]="playersData"></app-players-data>
+  </div>
+  <div class="column">
+    <p *ngIf="estado === 'buscando'">Buscando rival...</p>
+    <div *ngIf="estado === 'jugando'" class="tablero" [ngClass]="{ 'no-interactivo': !partida.meToca }">
+      <p *ngIf="partida.meToca && !partida.ganador && !partida.empate" class="mensaje-grande-negrita">¡Es tu turno!</p>
+      <p *ngIf="!partida.meToca && !partida.ganador && !partida.empate" class="mensaje-grande-negrita">Esperando movimiento del rival...</p>
+
+
       <div class="fila" *ngFor="let fila of partida.casillas; let i = index">
-        <div class="casilla" *ngFor="let valor of fila; let j = index"
-             (click)="ponerFicha(j, i)">
-          <span [ngClass]="{
-            'agua': valor === 'D',
-            'barco': valor === 'B',
-            'movimiento-jugador1': valor === 'X' && partida.meToca,
-            'movimiento-jugador2': valor === 'X' && !partida.meToca
-          }">
-            {{ valor === 'D' ? '·' : (valor === 'B' ? 'X' : '') }}
-          </span>
+        <div class="casilla" *ngFor="let valor of fila; let j = index" (click)="ponerFicha(j, i)">
+          <span class="casillaMarcada" [ngClass]="getClaseCasilla(partida.casillas[i][j])"></span>
         </div>
       </div>
-      
-      
+
+      <p>Barcos Hundidos Jugador 1: {{ partida.barcosHundidosJugador1 }}</p>
+      <p>Barcos Hundidos Jugador 2: {{ partida.barcosHundidosJugador2 }}</p>
+      <p>Movimientos Restantes Jugador 1: {{ partida.movimientosRestantesJugador1 }}</p>
+      <p>Movimientos Restantes Jugador 2: {{ partida.movimientosRestantesJugador2 }}</p>
+
+      <button (click)="abandonarPartida()" class="boton-abandonar">Abandonar Partida</button>
     </div>
-    <button (click)="abandonarPartida()" *ngIf="estado === 'jugando' && !endGame">
-      Abandonar Partida
-    </button>
+    <div *ngIf="estado === 'jugando' && endGame && !abandonedGame" class="fin-partida">
+      <div class="mensaje">
+        <p *ngIf="partida.ganador" class="mensaje-ganador">¡Felicidades! Has ganado la partida.</p>
+        <p *ngIf="!partida.ganador && partida.empate" class="mensaje-empate">La partida ha terminado en empate.</p>
+        <p *ngIf="!partida.ganador" class="mensaje-perdedor">Tu oponente ha ganado la partida. ¡Inténtalo de nuevo!</p>
+        <button (click)="volverAHome()" class="boton-volver">Volver a la home</button>
+      </div>
+    </div>
+    <div *ngIf="abandonedGame" class="fin-partida">
+      <div class="mensaje">
+        <p *ngIf="partida.ganador" class="mensaje-ganador">¡Felicidades! Has ganado la partida.<br> Tu rival ha abandonado la partida.</p>
+        <p *ngIf="!partida.ganador" class="mensaje-perdedor">Has abandonado la partida y se te dará como perdida.</p>
+        <p *ngIf="partida.empate" class="mensaje-empate">La partida ha acabado en empate. </p>
+
+        <button (click)="volverAHome()" class="boton-volver">Volver a la home</button>
+      </div>
+    </div>
   </div>
-  <app-chat></app-chat>
-  
+  <div class="column-chat">
+    <app-chat></app-chat>
+  </div>
+</div>

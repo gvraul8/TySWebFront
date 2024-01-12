@@ -1,9 +1,61 @@
 <div class="main-content">
-  <h1>Jugar al 3 en raya</h1>
-  <div class="button-container">
-    <button routerLink="/Juegos">Jugar al 3 en raya</button>
-    <button routerLink="/OtroJuego">Otro Juego</button>
+  <!-- Columna 1 - 4 en raya -->
+  <div class="column">
+    <h1>4 en raya</h1>
+    <div class="button-container">
+      <button routerLink="/Juegos">Jugar al 4 en raya</button>
+    </div>
+    <img src="assets/4R.png" alt="Imagen 4 en raya">
+    <p>Como jugar al 4 en raya...</p>
+    <ul>
+      <strong>Reglas básicas</strong>
+      <br>
+      <li>Dos jugadores</li>
+      <li>Tablero de 7x6</li>
+      <br>
+      <strong>Objetivo</strong> 
+      <br>
+      <li>Conseguir 4 fichas en línea</li>
+      <br>
+      <strong>Cómo jugar</strong>
+      <br>
+      <li>Los jugadores se turnan para colocar una ficha en el tablero</li>
+      <li>Las fichas caen hasta el fondo del tablero</li>
+      <li>Las fichas se colocan en la columna seleccionada</li>
+    </ul>
   </div>
-  <router-outlet></router-outlet>
-</div>
 
+  <!-- Columna 2 - Hunde la flota -->
+  <div class="column">
+    <h1>Hunde la flota</h1>
+    <div class="button-container">
+      <button routerLink="/Flota">Jugar a Hunde la flota</button>
+    </div>
+    <img src="assets/HF.png" alt="Imagen Hunde la flota">
+    <p>Como jugar a Hunde la flota...</p>
+    <ul>
+      <strong>Reglas básicas</strong>
+      <br>
+      <li>Dos jugadores</li>
+      <li>Tablero de 10x10</li>
+      <li>10 barcos en casillas aleatorias</li>
+      <li>10 movimientos cada jugador</li>
+      <br>
+      <strong>Objetivo</strong>
+      <br>
+      <li>Hundir el máximo de barcos posible</li>
+      <li>Gana el que más barcos hunda</li>
+      <br>
+      <strong>Cómo jugar</strong>
+      <br>
+      <li>Los jugadores se turnan para disparar</li>
+      <li>Los disparos se hacen en casillas del tablero</li>
+      <li>Si se acierta en una casilla con barco, se hunde (marcado como X)</li>
+      <li>Si se acierta en una casilla sin barco, se marca como agua (marcado como ·)</li>
+      <br>
+      <strong>El juego se puede acabar en dos situaciones:</strong>
+      <li>1. Todos los barcos hundidos </li>
+      <li>2. Se acaban los movimientos</li>
+    </ul>
+  </div>
+</div>

@@ -1,23 +1,25 @@
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.tablero {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    /* Añadido para representar como matriz */
-    grid-gap: 5px;
-    margin-top: 20px;
-}
-
-.fila {
+body {
     display: flex;
-}
-
-.casilla {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .tablero {
+    display: grid;
+    grid-template-columns: repeat(7);
+    margin-top: 35px;
+    align-items: center;
+    justify-content: center;
+    gap: 2px; /* Añadir espaciado entre las casillas */
+  }
+  
+  .fila {
+    display: flex;
+  }
+  
+  .casilla {
     border: 2px solid #3498db;
     width: 50px;
     height: 50px;
@@ -27,48 +29,174 @@
     font-size: 1.2em;
     background-color: #ecf0f1;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Añadir transición para el cambio de color */
+  }
+  
+  
+  .casilla:hover, .columna-hover {
+    background-color: #3498db91; 
+  }
+  
+  .no-interactivo {
+    pointer-events: none; 
+    opacity: 0.5; 
+  }
+  
+  /* Estilos para el mensaje del final de la partida */
+  .fin-partida {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2; /* Coloca los mensajes encima del tablero */
+  }
+  
+  .mensaje {
+    background-color: #f8f9fa;
+    border: 2px solid #ced4da;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mensaje-ganador {
+    color: #198754;
+    font-size: 18px;
+  }
+  
+  .mensaje-empate {
+    color: #0dcaf0;
+    font-size: 18px;
+  }
+  
+  .mensaje-perdedor {
+    color: #dc3545;
+    font-size: 18px;
+  }
+  
+  /* Estilos para el botón de volver */
+  .fin-partida button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-    /* Añadir transición para el cambio de color */
-}
-
-.casilla:hover,
-.columna-hover {
-    background-color: #3498db91;
-}
-
-
-/* Estilo adicional para resaltar las filas y columnas */
-.tablero .fila:nth-child(even) .casilla:nth-child(even),
-.tablero .fila:nth-child(odd) .casilla:nth-child(odd) {
-    background-color: #eee;
-}
-
-.tablero .fila:nth-child(even) .casilla:nth-child(odd),
-.tablero .fila:nth-child(odd) .casilla:nth-child(even) {
-    background-color: #fff;
-}
-
-
-.casilla:hover,
-.columna-hover {
-    background-color: #3498db91;
-}
-
-.casilla.agua {
-    background-color: lightblue;
-}
-
-.casilla.barco {
-    background-color: #2ecc71;
+  }
+  
+  .fin-partida button:hover {
+    background-color: #0056b3;
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+  }
+  
+  .column {
+    flex: 1;
+  }
+  
+  .column-players {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 30%;
+  }
+  
+  .column-chat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 30%;
+  }
+  
+  /* Agregar estilos para el botón de abandonar */
+  .boton-abandonar {
+    background-color: #d9534f;
     color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Ajustar el margen según sea necesario */
+  }
+  
+  .boton-abandonar:hover {
+    background-color: #c9302c;
+  }
+   
+.casillaMarcada {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    display: block;
+    border-radius: 50%;
 }
 
-.casilla.movimiento-jugador1 {
-    background-color: #3498db;
-    color: white;
+.rojo::before,
+.azul::before,
+.blanco::before {
+    content: 'X'; /* Contenido a mostrar en el centro */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 40px; /* Ajusta según sea necesario */
+    color: white; /* Color del texto */
 }
 
-.casilla.movimiento-jugador2 {
-    background-color: #e74c3c;
-    color: white;
+.rojo::before {
+    background-color: rgb(141, 23, 23);
 }
+
+.azul::before {
+    background-color: rgb(73, 73, 161);
+}
+
+.blanco::before {
+    background-color: white;
+}
+
+/* Añadir clase 'marcar' para mostrar la X en las casillas */
+.casillaMarcada.marcar::before {
+    content: 'X';
+}
+
+/* Añadir clase 'agua' para mostrar la O en las casillas azules */
+.casillaMarcada.agua::before {
+    content: '·';
+}
+
+
+.mensaje-grande-negrita {
+    font-size: 18px; /* Ajusta el tamaño del texto según tus necesidades */
+    font-weight: bold;
+  }
+
+  .boton-abandonar {
+    background-color: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Ajustar el margen según sea necesario */
+  }
+  
+  .boton-abandonar:hover {
+    background-color: #c9302c;
+  }

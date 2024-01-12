@@ -153,3 +153,9 @@ body {
 .boton-abandonar:hover {
   background-color: #c9302c;
 }
+
+
+.mensaje-grande-negrita {
+  font-size: 18px; /* Ajusta el tamaño del texto según tus necesidades */
+  font-weight: bold;
+}
