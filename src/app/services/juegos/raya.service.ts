@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RayaResponse } from './rayaResponse';
 import { serverHost, serverPort } from '../../app.properties';
@@ -16,17 +16,19 @@ const url4RAbandonar = `http://${serverHost}:${serverPort}/matches/abandonar`;
 })
 export class RayaService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   iniciarPartida(latitud: string, longitud: string): Observable<RayaResponse> {
     // Iniciar conexión ws con el servidor cuando la partida se ha creado correctamente
 
-    return this.httpClient.post<RayaResponse>(url4RStart,  {"lat": latitud, "lon": longitud }, {withCredentials: true});
+    return this.httpClient.post<RayaResponse>(url4RStart, { "lat": latitud, "lon": longitud }, { withCredentials: true });
   }
+
+
 
   play(idPartida: String) {
     console.log('play() idPartida:', idPartida);
-    return this.httpClient.post(url4RPlay, {"id": idPartida}).subscribe(
+    return this.httpClient.post(url4RPlay, { "id": idPartida }).subscribe(
       (response) => {
         console.log('play() response:', response);
       },
@@ -41,12 +43,12 @@ export class RayaService {
       "id": idPartida,
       "columna": columna
     };
-  
+
     return this.httpClient.post(url4RPoner, requestBody, { withCredentials: true });
   }
 
   abandonarPartida(idPartida: string): Observable<any> {
-    return this.httpClient.post(url4RAbandonar, {"id": idPartida}, { withCredentials: true });
+    return this.httpClient.post(url4RAbandonar, { "id": idPartida }, { withCredentials: true });
 
   }
 }

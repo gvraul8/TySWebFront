@@ -149,8 +149,10 @@ export class FlotaComponent implements OnInit {
       this.actualizarMovimiento(data);
     }
     else if (data.tipo == "MATCH_END") {
+      console.log(" ---------------------------------");
       this.endGame = true;
-      console.log("Partida terminada");
+      console.log(" ----------------- Partida terminada");
+      console.log(this.partida);
       this.actualizarMovimiento(data);
       this.partida.empate = data.empate;
       this.partida.ganador = data.ganador;

@@ -25,8 +25,8 @@
     <div *ngIf="estado === 'jugando' && endGame && !abandonedGame" class="fin-partida">
       <div class="mensaje">
         <p *ngIf="partida.ganador" class="mensaje-ganador">¡Felicidades! Has ganado la partida.</p>
-        <p *ngIf="!partida.ganador && partida.empate" class="mensaje-empate">La partida ha terminado en empate.</p>
-        <p *ngIf="!partida.ganador" class="mensaje-perdedor">Tu oponente ha ganado la partida. ¡Inténtalo de nuevo!</p>
+        <p *ngIf="partida.empate && !partida.ganador" class="mensaje-empate">La partida ha terminado en empate.</p>
+        <p *ngIf="!partida.ganador && !partida.empate" class="mensaje-perdedor">Tu oponente ha ganado la partida. ¡Inténtalo de nuevo!</p>
         <button (click)="volverAHome()" class="boton-volver">Volver a la home</button>
       </div>
     </div>

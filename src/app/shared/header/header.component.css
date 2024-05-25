@@ -42,11 +42,11 @@
   display: none;
   position: absolute;
   top: 100%;
-  right: 0; /* Ajuste para que el menú se expanda hacia la izquierda /
+  right: 0; /* Ajuste para que el menú se expanda hacia la izquierda */
   background-color: #365d90d7;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  margin-left: 10px; / Ajuste para separar el menú del icono */
+  margin-left: 10px; 
 }
 .menu.show {
   display: block;
