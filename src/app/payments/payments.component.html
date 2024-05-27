@@ -1,0 +1,18 @@
+<div class="payment-container">
+  <h1> Pago de partidas de 4 en raya </h1>
+  <p>Las partidas de 4 en raya tienen un coste de 1€.</p>
+  <div class="button-container">
+    <button id="payment-button"  (click)="requestPrepayment()">Ir al pago</button>
+  </div>
+
+  <div *ngIf="showPaymentForm" class="payment-form-container">
+    <form id="payment-form">
+      <div id="card-element"></div>
+      <div id="card-error" role="alert"></div>
+      <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">Pagar</span>
+      </button>
+    </form>
+  </div>
+</div>

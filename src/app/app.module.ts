@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { ChatComponent } from './shared/chat/chat.component';
 import { PlayersDataComponent } from './shared/players-data/players-data.component';
 import { FlotaComponent } from './flota/flota.component';
+import { PaymentsComponent } from './payments/payments.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { FlotaComponent } from './flota/flota.component';
     HomeComponent,
     ChatComponent,
     PlayersDataComponent,
-    FlotaComponent
+    FlotaComponent,
+    PaymentsComponent
   ],
   imports: [
     BrowserModule,

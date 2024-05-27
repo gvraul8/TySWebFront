@@ -1,0 +1,91 @@
+.payment-container {
+  max-width: 600px;
+  margin: 50px auto 0;
+  padding: 20px;
+  border: 1px solid #d3def5;
+  border-radius: 8px;
+  background-color: #dbe6ff;
+}
+
+.payment-container h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.payment-container p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#payment-button {
+  background-color: #003975;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#payment-button:hover {
+  background-color: #0056b3;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.payment-form-container {
+  margin-top: 20px;
+}
+
+#payment-form {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+#card-element {
+  margin-bottom: 10px;
+}
+
+#card-error {
+  color: #dc3545;
+  margin-bottom: 10px;
+}
+
+#submit {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#submit:hover {
+  background-color: #0056b3;
+}
+
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  visibility: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

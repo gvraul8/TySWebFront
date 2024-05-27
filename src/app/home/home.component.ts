@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -13,8 +15,21 @@ export class HomeComponent {
   TemperaturaMin?: number;
   ciudad?: string;
 
-  constructor() {
+  showModal: boolean = false;
 
+  constructor(private router: Router) {}
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  goToPayment() {
+    this.closeModal();
+    this.router.navigate(['/payments']);
   }
   
 
